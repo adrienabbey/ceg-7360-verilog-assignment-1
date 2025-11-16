@@ -3,7 +3,7 @@
  * Licensed under the MIT License
  **************************************************************************************************/
 /*
- * Simple 4:1 MUX with enable and asynchronus reset test bench
+ * Simple 4:1 MUX with enable and asynchronous reset test bench
  * Associated design file: mut.v
  * Developer: Bayley King
  */
@@ -19,7 +19,7 @@ reg [DATA_WIDTH:0] din_1;         // Input B
 reg [DATA_WIDTH:0] din_2;         // Input C
 reg [DATA_WIDTH:0] din_3;         // Input D
 reg [1:0] sel;                    // Select
-reg reset_n;                      // Active low asynchronus reset
+reg reset_n;                      // Active low asynchronous reset
 reg clk;                          // Clock input
 wire [DATA_WIDTH:0] mux_out;   // Output Bus
 
@@ -90,4 +90,11 @@ initial begin
         #5 clk = ~clk;
     end
 end
+
+// NOTE: I added the following to enable output of the waveform:
+initial begin
+    $dumpfile("waves.vcd"); // Instructs the simulator to create the wave output file
+    $dumpvars(0, tb_mux);   // Include all the signals in the testbench in the wave file
+end
+
 endmodule
