@@ -3,13 +3,21 @@
 > Fall 2025 Embedded Systems (CEG-7360-01)  
 > Original files written and provided by Dr. Bayley King
 
+## Using these Files
+
+### Testbenches
+
+- Open a terminal and navigate to the relevant `./sim/` directory (there's one for each of the different designs).
+- Inside each of these directories is a `Makefile` that assumes that Icarus Verilog and GTKWave is installed.
+- Running `make` within each of these directories will compile, simulate and then open the output waveform.
+
 ## Assignment Objectives
 
-### Objective 1: Install and Configure HDL Simulation Tools
+### Objective 1: Install and Configure HDL Simulation Tools (DONE)
 
 - I'm going to focus on open source tooling, specifically Icarus Verilog and Verilator.
 
-### Objective 2: Simulate the Provided 4-to-1 Multiplexer Design
+### Objective 2: Simulate the Provided 4-to-1 Multiplexer Design (DONE)
 
 - I need to use both simulators to run the provided 4-1 MUX Verilog source file and its test bench.
 - I need to verify that the simulation runs correctly and that the output waveform matches expected MUX behavior.
@@ -53,3 +61,7 @@
   - Screenshots from both simulators for the MUX
   - Screenshots of the D-type flip-flop
   - Screenshots of the sequence detector
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
