@@ -15,14 +15,36 @@
 --     - Active-low asynchronous enable
 --
 -- Parameters:
---   WIDTH : Integer
+--   DATA_WIDTH : Integer
 --     Width of the D and Q buses
 --
 -- Ports:
 --   clk      : Input
 --   reset_n  : Input
 --   enable_n : Input
---   d        : Input  [WIDTH-1:0]
---   q        : Output [WIDTH-1:0]
+--   d        : Input  [DATA_WIDTH-1:0]
+--   q        : Output [DATA_WIDTH-1:0]
 -------------------------------------------------------------------------------
 */
+
+module dff #(
+    parameter DATA_WIDTH = 8
+) (
+    input                       clk,       // Clock input
+    input                       reset_n,   // Active-low reset input
+    input                       enable_n,  // Active-low enable input
+    input      [DATA_WIDTH-1:0] d,         // Input bus
+    output reg [DATA_WIDTH-1:0] q          // Output bus
+);
+
+  always @(negedge reset_n) begin  // As soon as reset is asserted...
+    q <= 0;  // Reset the output to zero.
+  end
+
+  always @(posedge clk) begin  // On the rising clock edge...
+    if (enable_n == 0 && reset_n == 1) begin  // If enable is asserted but reset is not...
+      q <= d;  // Assign the input to the output.
+    end
+  end
+
+endmodule
