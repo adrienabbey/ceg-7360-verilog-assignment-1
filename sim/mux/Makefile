@@ -3,8 +3,8 @@
 # This is based on example code provided by ChatGPT.
 
 # Path variables
-SRC		= ../src/mux.v
-TB		= ../tb/mux_tb.v
+SRC		= ../../src/mux/mux.v
+TB		= mux_tb.v
 OUT		= build/mux_sim
 WAVE	= waves.vcd
 
