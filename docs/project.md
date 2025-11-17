@@ -20,3 +20,19 @@
     - I needed to ensure that the `mux.v` file was the only design source, with the `mux_tb.v` file as the top simulation source.
     - Finally, I just needed to "Run Simulation" and ensure that my waveform and console outputs appeared accurate.
   - Note: the Vivado project files are NOT included in this repo.
+  - Note: After taking screenshots, I reorganized the directory structure of the project.
+
+### D-type Flip-Flop
+
+- D-type flip-flops remember inputs, with their output being whatever the input was last remembered.
+  - The output updates based on their clock input, typically the rising-edge, but only if enable is asserted.
+  - Asserting reset will immediately set the output to zeros.
+  - The output will change only if reset is asserted or on the rising clock edge if enable is asserted.
+- I need to write a Verilog module for this DFF that does the following based on priority:
+  - If reset is asserted at any time, clear the output.
+  - On the clock's rising edge, if enable is asserted, set the output to the input and hold it.
+- I'll be implementing this using behavioral logic (`always`, `if`, `else`, etc).
+- My `always` list include the rising clock edge, reset, and enable.
+  - Because reset and enable are both asynchronous, they must be included.
+- Because DFFs are clocked, I should use non-blocking assignments.
+  - Failing to do this can lead to race conditions.
