@@ -32,7 +32,20 @@
   - If reset is asserted at any time, clear the output.
   - On the clock's rising edge, if enable is asserted, set the output to the input and hold it.
 - I'll be implementing this using behavioral logic (`always`, `if`, `else`, etc).
-- My `always` list include the rising clock edge, reset, and enable.
+- My `always` list "should" include the rising clock edge, reset, and enable.
   - Because reset and enable are both asynchronous, they must be included.
+  - However, I don't know how to add all three to the same list while only updating the output on clock.
+  - Thus, I simply used two separate `always` blocks (one for reset, one for clock edge), and only update the output if reset isn't asserted.
+    - This may be incorrect and need rectifying.  I sent an email to Bayley and am waiting to hear back regarding this.
 - Because DFFs are clocked, I should use non-blocking assignments.
   - Failing to do this can lead to race conditions.
+
+#### DFF Testbench
+
+- I need to test reset, ensuring it's asynchronous and sets the output correctly.
+- I need to test enable, ensuring the output only updates when enabled.
+- I need to test clock, ensuring the output updates only on the rising edge.
+- I need to test edge cases which are a mix of the above:
+  - Asserting enable and reset at the same time on a rising clock edge.
+  - Changing the input but not enable and ensuring the output doesn't change.
+  - Ensuring the output doesn't change after a reset unless enable is asserted and reset is not.
