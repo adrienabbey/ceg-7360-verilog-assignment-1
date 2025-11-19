@@ -32,7 +32,7 @@
 module dff_tb;
 
   // Parameters:
-  parameter DATA_WIDTH = 8;  // Sets the size of the input/output buses; can be changed.
+  parameter DATA_WIDTH = 16;  // Sets the size of the input/output buses; can be changed.
 
   // Registers and wires:
   reg clk;  // Clock input.  Inputs are registers as we want them to stick while testing.
@@ -56,27 +56,48 @@ module dff_tb;
   initial begin
     clk = 0;  // Start the clock low
     forever begin  // Run forever
-      #5 clk = ~clk;  // Every 5 time steps, invert the clock
+      #1 clk = ~clk;  // Every 5 time steps, invert the clock
     end
   end
 
-  // TODO: the actual tests
-  //  - assert enable, deassert reset
-  //  - set a random input
-  //  - ensure the output changes only on clock edge
-  //  - deassert enable, set random input
-  //  - ensure output does not change
-  //  - assert reset
-  //  - ensure output changes to zero
-  //  - assert enable
-  //  - ensure output doesn't change
-  //  - deassert reset
-  //  - ensure output does change
+  // Testing task list:
+  initial begin
+    // Monitor and display changes to the console:
+    $monitor("[%0t] reset_n=0x%0h enable_n=0x%0h d=0x%0h q=0x%0h", $time, reset_n, enable_n, d, q);
+
+    // Initial signal setup:
+    $display("Initial signal setup:");
+    reset_n = 1;  // Disable reset
+    enable_n = 0;  // Assert enable
+    d = $random;  // Set a random input
+    #5;  // Wait 5 time units
+
+    // Test enable:
+    $display("Testing enable:");
+    enable_n = 1;  // Disable enable
+    #5;  // Wait 5 units
+    d = $random;  // Set a random input
+    #5;  // Wait 5 units
+    enable_n = 0;  // Assert enable
+    #5;  // Wait 5 units
+
+    // Test reset:
+    $display("Testing reset:");
+    reset_n = 0;  // Assert reset
+    #5;  // Wait 5 units
+    d = $random;  // Set a random input
+    #5;  // Wait 5 units
+    reset_n = 1;  // Disable reset
+    #5;  // Wait 5 units
+
+    // End the simulation:
+    $finish;
+  end
 
   // Export the wave file (needed for Icarus Verilog):
   initial begin
     $dumpfile("waves.vcd");  // Set the file name
-    $dumpvars(0, diff_tb);  // Include all the signals
+    $dumpvars(0, dff_tb);  // Include all the signals
   end
 
 endmodule
