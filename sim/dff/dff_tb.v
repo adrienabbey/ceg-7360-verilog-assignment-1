@@ -52,4 +52,31 @@ module dff_tb;
       .q(q)
   );
 
+  // Configure the clock:
+  initial begin
+    clk = 0;  // Start the clock low
+    forever begin  // Run forever
+      #5 clk = ~clk;  // Every 5 time steps, invert the clock
+    end
+  end
+
+  // TODO: the actual tests
+  //  - assert enable, deassert reset
+  //  - set a random input
+  //  - ensure the output changes only on clock edge
+  //  - deassert enable, set random input
+  //  - ensure output does not change
+  //  - assert reset
+  //  - ensure output changes to zero
+  //  - assert enable
+  //  - ensure output doesn't change
+  //  - deassert reset
+  //  - ensure output does change
+
+  // Export the wave file (needed for Icarus Verilog):
+  initial begin
+    $dumpfile("waves.vcd");  // Set the file name
+    $dumpvars(0, diff_tb);  // Include all the signals
+  end
+
 endmodule
