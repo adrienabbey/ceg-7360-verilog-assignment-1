@@ -49,3 +49,13 @@
   - Asserting enable and reset at the same time on a rising clock edge.
   - Changing the input but not enable and ensuring the output doesn't change.
   - Ensuring the output doesn't change after a reset unless enable is asserted and reset is not.
+
+### Sequence Detector
+
+- I need to pick a 5-digit sequence to test for.
+  - `12131`: some repetition and alternation with a surprise.
+- I need to parameterize the data width, which I assume defines the symbol width.
+  - Since the sequence is fixed, this doesn't do much, I assume.
+- I need to select Moore or Mealy and pick a form of state encoding.
+  - Moore, since it's sufficient and easier to implement.
+  - I'll use binary encoding, as it's again sufficient and easier to implement.  Given 5 symbols + a start/reset state, I can use 3 bits to encode the state.
