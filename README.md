@@ -23,14 +23,14 @@
 - I need to verify that the simulation runs correctly and that the output waveform matches expected MUX behavior.
 - I need to capture screenshots of the waveforms and the console/debug output for each simulator.
 
-### Objective 3: Design a Parameterized D Flip-Flop Module
+### Objective 3: Design a Parameterized D Flip-Flop Module (DONE)
 
 - I need to write a standalone Verilog module that implements a clocked D-type Flip Flop with:
   - Reset (active-low, asynchronous assertion, and synchronous release)
   - Enable (active-low and asynchronous)
   - Parameterizable data width
 
-### Objective 4: Develop a Testbench for the D Flip-Flop
+### Objective 4: Develop a Testbench for the D Flip-Flop (DONE)
 
 - This should thoroughly test the D-type flip-flop module, demonstrating correct behavior of:
   - Reset
