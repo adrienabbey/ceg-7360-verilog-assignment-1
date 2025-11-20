@@ -54,8 +54,17 @@
 
 - I need to pick a 5-digit sequence to test for.
   - `12131`: some repetition and alternation with a surprise.
+  - This intentionally complicates the state diagram design.
 - I need to parameterize the data width, which I assume defines the symbol width.
   - Since the sequence is fixed, this doesn't do much, I assume.
 - I need to select Moore or Mealy and pick a form of state encoding.
   - Moore, since it's sufficient and easier to implement.
   - I'll use binary encoding, as it's again sufficient and easier to implement.  Given 5 symbols + a start/reset state, I can use 3 bits to encode the state.
+
+#### SEQ Testbench
+
+- For this, I need to test not only for the right sequence, but also edge cases too.
+  - For example, additional symbols outside the expected (non-digits).
+    - Also make sure that my design's symbol tests work properly!
+    - I'm testing for 1-character strings, not binary values.
+  - I need to make sure that the sequence detector loops back to the appropriate state rather than a full reset.
