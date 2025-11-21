@@ -54,7 +54,7 @@
   - Clear simulation output
   - Screenshots of the waveform and console outputs
 
-### Objective 7: Write the Project Report
+### Objective 7: Write the Project Report (DONE)
 
 - There should be a folder containing all the Verilog source files and testbenches
 - This should be a PDF or Word document containing all my simulation results:
