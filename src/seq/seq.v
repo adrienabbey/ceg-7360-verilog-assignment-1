@@ -25,7 +25,7 @@
 */
 
 module seq #(
-    parameter DATA_WIDTH = 4
+    parameter DATA_WIDTH = 8
 ) (
     input                       clk,        // Clock input
     input                       reset_n,    // Active-low reset input
@@ -106,6 +106,7 @@ module seq #(
           next = START;
         end
       end
+      default: next = START;  // This is essential, as the initial state is not set.
     endcase
   end
 
