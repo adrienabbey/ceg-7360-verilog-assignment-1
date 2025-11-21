@@ -38,7 +38,7 @@
   - Data capture on clock edges
 - The testbench should produce terminal debug output and waveform traces suitable for screenshot documentation.
 
-### Objective 5: Implement a Parameterized 5-Symbol Sequence Detector
+### Objective 5: Implement a Parameterized 5-Symbol Sequence Detector (DONE)
 
 - Write a behavioral Verilog module implementing a detector for a 5-item input sequence (of my choice) with the following requirements:
   - Parameterizable input symbol width
@@ -46,7 +46,7 @@
   - Documentation of the chosen state-encoding method and justification for my choice
 - This needs to be implemented at the behavioral level, not the gate level.
 
-### Objective 6: Build a Comprehensive Testbench for the Sequence Detector
+### Objective 6: Build a Comprehensive Testbench for the Sequence Detector (DONE)
 
 - I need to create a robust testbench that verifies the correctness of the above detector with the following requirements:
   - Sufficient variety of test patterns
