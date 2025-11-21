@@ -68,3 +68,4 @@
     - Also make sure that my design's symbol tests work properly!
     - I'm testing for 1-character strings, not binary values.
   - I need to make sure that the sequence detector loops back to the appropriate state rather than a full reset.
+- NOTE: Vivado's waveform does not display the state/next values correctly.  They DO show up correctly in the console, however.
