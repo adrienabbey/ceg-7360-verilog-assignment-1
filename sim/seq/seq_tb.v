@@ -25,6 +25,10 @@
 -- Devices Under Test:
 --   state : Register [2:0]
 --   next  : Register [2:0]
+--
+-- NOTES:
+-- - Make steps 2 time units, as the clock changes every 1 time unit!
+--   - The sequence detector expects the input to change every clock cycle.
 -------------------------------------------------------------------------------
 */
 
@@ -48,7 +52,8 @@ module seq_tb;
   ) seq0 (  // Create a new instance
       .clk(clk),  // Match the testbench inputs/outputs
       .reset_n(reset_n),
-      .in_symbol(in_symbol)
+      .in_symbol(in_symbol),
+      .match(match)
   );
 
   // Configure the clock:
@@ -67,15 +72,17 @@ module seq_tb;
 
     // Initial signal setup:
     $display("Initial signal setup:");
-    reset_n = 1;  // Disable reset
+    reset_n   = 1;  // Disable reset
+    in_symbol = 0;  // Start with the input being zero.
 
     // Test a valid input sequence:
     $display("Testing valid input sequence:");
-    #5 in_symbol = "1";  // Set the input symbol to the string of "1" and wait 5 time units.
-    #5 in_symbol = "2";  // Set the second symbol and wait 5 time units.
-    #5 in_symbol = "1";  // ...etc.
-    #5 in_symbol = "3";
-    #5 in_symbol = "1";  // Final sequence symbol
+    #2 in_symbol = "1";  // Set the input symbol to the string of "1" and wait 2 time units.
+    #2 in_symbol = "2";  // Set the second symbol and wait 2 time units.
+    #2 in_symbol = "1";  // ...etc.
+    #2 in_symbol = "3";
+    #2 in_symbol = "1";  // Final sequence symbol
+    #2;  // Let the result propagate
 
     // End the simulation:
     $finish;
