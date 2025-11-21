@@ -84,6 +84,26 @@ module seq_tb;
     #2 in_symbol = "1";  // Final sequence symbol
     #2;  // Let the result propagate
 
+    // Test an invalid input sequence:
+    $display("Testing invalid input sequence:");
+    in_symbol = 1;  // NOTE: this is the same sequence but NOT ASCII strings!
+    #2 in_symbol = 2;  // This should fail as my sequence detector is designed for ASCII
+    #2 in_symbol = 1;
+    #2 in_symbol = 3;
+    #2 in_symbol = 1;  // Final sequence symbol
+    #2;  // Let the result propagate
+
+    // Test reset input:
+    $display("Testing reset input:");
+    in_symbol = "1";  // Start with a valid sequence input.
+    #2 in_symbol = "2";
+    #2 in_symbol = "1";
+    reset_n = 0;  // Assert reset
+    #2 in_symbol = "3";
+    reset_n = 1;  // Disable reset
+    #2 in_symbol = "1";  // See if the state saved during reset.
+    #2;  // Wait to propagate
+
     // End the simulation:
     $finish;
   end
